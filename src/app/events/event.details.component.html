@@ -1,0 +1,84 @@
+<div class="card mb-3">
+  <div class="card-body ">
+    <h5 class="card-title">{{event.name}}</h5>
+    <div class="text-right"> 
+      <span class="badge badge-pill badge-warning" *ngIf="event.status=='End'">{{event.status}}</span>
+      <span class="badge badge-pill badge-primary" *ngIf="event.status=='Coming'">{{event.status}}</span>
+      <span class="badge badge-pill badge-success" *ngIf="event.status=='Started'">{{event.status}}</span>
+    </div>
+    <p class="card-text">{{ event.description }}</p>
+     <div>
+       <b>Date Start</b> {{ event.startDate | date:'dd-MM-yyyy HH:mm' }}
+    </div>
+     <div>
+       <b>Date End</b> {{ event.endDate | date:'dd-MM-yyyy HH:mm' }}
+    </div>
+
+   <div class="text-right">
+        <!-- <b>Employers: </b>{{ event.employers.length }} -->
+    </div>
+  </div>
+</div>
+<div class="text-right mb-3">
+  <button class="btn btn-primary" (click)="open(content)" type="submit" [disabled]="event.status=='End'">Add employee</button>
+</div>
+
+<div class="mb-3">
+  <div class="card mb-3" *ngFor="let employee of enployersOnEvent; index as i">
+    <div class="row">
+      <div class="col">
+        <img src="assets/images/person.jpg" class="rounded-circle" style="width: 50px;height: 50px;">
+      </div>
+      <div class="col">
+         <a  [routerLink]="['/employers/'+employee.id]">
+          {{ employee.name }} {{ employee.surname }}
+        </a>
+      </div>
+      <div class="col">
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a job</mat-label>
+            <mat-select [(value)]="employee.curentJobId" (selectionChange)="selectedJob(employee,$event)" [disabled]="employee.curentJobStart">
+              <mat-option value="option1"  [value]="job.id" *ngFor="let job of eventJobs; index as i" >{{job.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+      </div>
+      <div class="col">
+          <button type="button" class="btn btn-success" *ngIf="!employee.curentJobStart" (click)="startTimer(employee)"><i class="bi bi-play-circle"></i></button>
+          <button type="button" class="btn btn-warning" *ngIf="employee.curentJobStart" (click)="stopTimer(employee)"><i class="bi bi-pause-circle"></i></button>
+      </div>
+       <div class="col">
+          <button type="button" class="btn btn-danger" [disabled]="employee.curentJobStart" (click)="deleteEmployee(employee)"><i class="bi bi-trash"></i></button>
+       </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add employee</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+      <div class="mb-3">
+        <label for="dateOfBirth">Free employers</label>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let employee of enployersFree; index as i" (click)="modal.close(employee)">
+            <th scope="row">{{employee.id}}</th>
+            <td>
+              <img src="assets/images/person.jpg" class="rounded-circle" style="width: 50px;height: 50px;">
+            </td>
+            <td>{{ employee.name }} {{ employee.surname }}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+  </div>
+</ng-template>

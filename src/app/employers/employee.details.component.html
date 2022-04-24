@@ -1,0 +1,55 @@
+<div class="card mb-3">
+  <div class="card-body">
+  	<div class="row">
+  		<div class="col-sm">
+  			<img src="assets/images/person.jpg" class="rounded-circle" style="width: 50px;height: 50px;">
+  		</div>
+    	<div class="col-sm">{{employee.name}} {{employee.surname}}</div>
+    	<div class="col-sm text-right">
+    		<div>
+				<span class="badge badge-pill badge-warning" *ngIf="employee.curentJobStart">Have job</span>
+				<span class="badge badge-pill badge-primary" *ngIf="!employee.curentJobStart">Free</span>
+			</div>
+			<button class="btn btn-primary" (click)="export()"><i class="bi bi-arrow-up-square"></i></button>
+    	</div>
+	</div>
+	 <div><b> Last event: </b> <a  [routerLink]="['/events/'+employee.eventId]">{{ employee.eventName }}</a></div>
+  </div>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">Event</th>
+    <th scope="col">Job</th>
+    <th scope="col">Start</th>
+ 	<th scope="col">End</th>
+ 	<th scope="col">Job Time</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let job of employee.jobs; index as i">
+    <td>
+      <a  [routerLink]="['/events/'+job.eventId]">
+      	{{ job.eventName }}
+      </a>
+    </td>
+    <td>
+    	{{ job.jobName }}
+    </td>
+    <td>
+    	{{ job.start | date:'dd.MM HH:mm' }}
+	</td>
+    <td>
+    	<span *ngIf="job.end">{{ job.end | date:'dd.MM HH:mm' }}</span>
+    	<span *ngIf="!job.end">Now on job</span>
+	</td>
+	<td>
+		{{ job.workTime }}
+	</td>
+  </tr>
+  </tbody>
+</table>
+<div class="text-right">
+	<b>Full work time: </b> {{employee.fullJobTime}}
+</div>		

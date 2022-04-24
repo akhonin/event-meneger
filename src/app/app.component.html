@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-primary fixed-top">
+  <button class="navbar-toggler hidden-sm-up" type="button" (click)="isNavbarCollapsed = !isNavbarCollapsed" data-target="#navbarsDefault" aria-controls="navbarsDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div [ngbCollapse]="isNavbarCollapsed" class="collapse navbar-collapse" id="navbarsDefault">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" (click)="isNavbarCollapsed=true">
+        <a class="nav-link"  routerLink="/events">Events</a>
+      </li>
+      <li class="nav-item" (click)="isNavbarCollapsed=true">
+        <a class="nav-link" routerLink="/employers">Employers</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container" style="margin-top:60px;">
+   <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,61 @@
+[
+	{
+		"id":1,
+		"name":"Event 1",
+		"description": "event 1 description",
+		"startDate" : "2022-05-14:14:00",
+		"endDate" : "2022-06-14:14:00",
+		"jobs":[
+			{
+				"id":1,
+				"name":"barmen"
+			},
+			{
+				"id":2,
+				"name":"waiter"
+			},
+			{
+				"id":3,
+				"name":"manager"
+			},
+			{
+				"id":4,
+				"name":"cleaner"
+			}
+		]
+	},
+	{
+		"id":2,
+		"name":"Event 2",
+		"description": "event 2 description",
+		"startDate" : "2022-04-14:14:00",
+		"endDate" : "2022-05-14:14:00",
+		"jobs":[
+			{
+				"id":1,
+				"name":"builder"
+			},
+			{
+				"id":2,
+				"name":"foreman"
+			},
+			{
+				"id":3,
+				"name":"welder"
+			},
+			{
+				"id":4,
+				"name":"driver"
+			}
+		]
+	},
+	{
+		"id":3,
+		"name":"Event 3",
+		"description": "event 3 description",
+		"startDate" : "2021-06-14:14:00",
+		"endDate" : "2021-07-14:14:00",
+		"jobs":[]
+	}
+
+]

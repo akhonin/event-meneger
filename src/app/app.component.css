@@ -1,0 +1,15 @@
+body {
+    min-height: 75rem;
+    padding-top: 5rem;
+}
+nav{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.content{
+    margin-top: 50px;
+    padding: 10px;
+}
+.router-outlet {
+    margin: 2rem;
+}

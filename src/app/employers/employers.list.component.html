@@ -1,0 +1,25 @@
+<div class="text-center mb-3">
+  <span class="badge badge-pill badge-info">Employers: {{employers_list.length}}</span>
+</div>
+<div class="card mb-3" *ngFor='let employee of employers_list' style="cursor: pointer;"
+[routerLink]="['/employers/'+employee.id]">
+  <div class="card-body">
+  	<div class="row">
+  		<div class="col-sm">
+  			<img src="assets/images/person.jpg" class="rounded-circle" style="width: 50px;height: 50px;">
+  		</div>
+  		<div class="col-sm">
+			<h5 class="card-title">{{employee.name}} {{ employee.surname }}</h5>
+		</div>
+  	</div>
+
+    <div><b> Last event:</b> {{ employee.eventName }}</div>
+
+
+    <div class="text-right">
+      <span class="badge badge-pill badge-warning" *ngIf="employee.curentJobStart">Have job</span>
+      <span class="badge badge-pill badge-primary" *ngIf="!employee.curentJobStart">Free</span>
+    </div>
+
+  </div>
+</div>
